@@ -81,7 +81,7 @@ public class PrettyPrint extends WriterConfig {
     return new PrettyPrintWriter(writer, indentChars);
   }
 
-  private static class PrettyPrintWriter extends JsonWriter {
+  private static final class PrettyPrintWriter extends JsonWriter {
 
     private final char[] indentChars;
     private int indent;
