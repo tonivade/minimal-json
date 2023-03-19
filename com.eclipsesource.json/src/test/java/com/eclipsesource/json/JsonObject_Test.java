@@ -23,6 +23,8 @@ package com.eclipsesource.json;
 
 import static com.eclipsesource.json.TestUtil.assertException;
 import static com.eclipsesource.json.TestUtil.serializeAndDeserialize;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -34,10 +36,12 @@ import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -224,6 +228,11 @@ public class JsonObject_Test {
   }
 
   @Test
+  public void stream_isEmptyAfterCreation() {
+    assertTrue(object.stream().count() == 0);
+  }
+
+  @Test
   public void iterator_hasNextAfterAdd() {
     object.add("a", true);
     Iterator<Member> iterator = object.iterator();
@@ -237,6 +246,14 @@ public class JsonObject_Test {
     Iterator<Member> iterator = object.iterator();
 
     assertEquals(new Member("a", Json.TRUE), iterator.next());
+  }
+
+  @Test
+  public void stream_returnActualValues() {
+    object.add("a", true);
+    List<Member> collect = object.stream().collect(Collectors.toList());
+
+    assertThat(collect, equalTo(Arrays.asList(new Member("a", Json.TRUE))));
   }
 
   @Test

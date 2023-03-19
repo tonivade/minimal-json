@@ -23,15 +23,19 @@ package com.eclipsesource.json;
 
 import static com.eclipsesource.json.TestUtil.assertException;
 import static com.eclipsesource.json.TestUtil.serializeAndDeserialize;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -150,6 +154,11 @@ public class JsonArray_Test {
   }
 
   @Test
+  public void stream_isEmptyAfterCreation() {
+    assertTrue(array.stream().count() == 0);
+  }
+
+  @Test
   public void iterator_hasNextAfterAdd() {
     array.add(true);
 
@@ -158,6 +167,15 @@ public class JsonArray_Test {
     assertEquals(Json.TRUE, iterator.next());
     assertFalse(iterator.hasNext());
   }
+
+  @Test
+  public void stream_returnActualValues() {
+    array.add( true);
+    List<JsonValue> collect = array.stream().collect(Collectors.toList());
+
+    assertThat(collect, equalTo(Arrays.asList(Json.TRUE)));
+  }
+
 
   @Test(expected = UnsupportedOperationException.class)
   public void iterator_doesNotAllowModification() {

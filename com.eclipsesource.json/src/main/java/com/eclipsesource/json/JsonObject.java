@@ -28,6 +28,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import com.eclipsesource.json.JsonObject.Member;
 
@@ -746,6 +750,16 @@ public class JsonObject extends JsonValue implements Iterable<Member> {
       }
 
     };
+  }
+
+  /**
+   * Returns an stream over the members of this object in document order.
+   * 
+   * @return a stream over the members of this object
+   */
+  public Stream<Member> stream() {
+    Spliterator<Member> spliterator = Spliterators.spliterator(iterator(), values.size(), 0);
+    return StreamSupport.stream(spliterator, false);
   }
 
   @Override
