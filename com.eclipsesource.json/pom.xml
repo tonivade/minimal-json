@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.eclipsesource.minimal-json</groupId>
+  <groupId>com.github.tonivade</groupId>
   <artifactId>minimal-json</artifactId>
   <version>0.10.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>minimal-json</name>
   <description>A Minimal JSON Parser and Writer</description>
-  <url>https://github.com/ralfstx/minimal-json</url>
+  <url>https://github.com/tonivade/minimal-json</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -91,6 +91,39 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>pgp-maven-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.13</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <licenses>
     <license>
       <name>MIT License</name>
@@ -100,19 +133,17 @@
   </licenses>
 
   <scm>
-    <url>https://github.com/ralfstx/minimal-json</url>
-    <connection>scm:git:git@github.com:ralfstx/minimal-json.git</connection>
-    <developerConnection>scm:git:git@github.com:ralfstx/minimal-json.git</developerConnection>
+    <url>https://github.com/tonivade/minimal-json</url>
+    <connection>scm:git:git@github.com:tonivade/minimal-json.git</connection>
+    <developerConnection>scm:git:git@github.com:tonivade/minimal-json.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
   <developers>
     <developer>
-      <id>rsternberg</id>
-      <name>Ralf Sternberg</name>
-      <email>rsternberg@eclipsesource.com</email>
-      <organization>EclipseSource</organization>
-      <organizationUrl>http://eclipsesource.com/</organizationUrl>
+      <id>tonivade</id>
+      <name>Antonio Muñoz</name>
+      <email>antoniogmc@gmail.com</email>
     </developer>
   </developers>
 
