@@ -21,11 +21,14 @@
  ******************************************************************************/
 package com.eclipsesource.json;
 
+import java.io.Serializable;
 
 /**
  * An immutable object that represents a location in the parsed text.
  */
-public class Location {
+public class Location implements Serializable {
+
+  private static final long serialVersionUID = -6509918622976652348L;
 
   /**
    * The absolute character index, starting at 0.

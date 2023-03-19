@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.Serializable;
 import java.io.StringWriter;
+import java.io.UncheckedIOException;
 import java.io.Writer;
 
 
@@ -441,7 +442,7 @@ public abstract class JsonValue implements Serializable {
       writeTo(writer, config);
     } catch (IOException exception) {
       // StringWriter does not throw IOExceptions
-      throw new RuntimeException(exception);
+      throw new UncheckedIOException(exception);
     }
     return writer.toString();
   }

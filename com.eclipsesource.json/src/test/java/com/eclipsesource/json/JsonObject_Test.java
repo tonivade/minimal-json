@@ -41,6 +41,10 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 import java.util.stream.Collectors;
 
 import org.junit.Before;
@@ -303,10 +307,22 @@ public class JsonObject_Test {
   }
 
   @Test
+  public void getValue_returnsEmptyForNonExistingMember() {
+    assertFalse(object.getValue("foo").isPresent());
+  }
+
+  @Test
   public void get_returnsValueForName() {
     object.add("foo", true);
 
     assertEquals(Json.TRUE, object.get("foo"));
+  }
+
+  @Test
+  public void getValue_returnsValueForName() {
+    object.add("foo", true);
+
+    assertEquals(Optional.of(Json.TRUE), object.getValue("foo"));
   }
 
   @Test
@@ -317,6 +333,13 @@ public class JsonObject_Test {
   }
 
   @Test
+  public void getValue_returnsLastValueForName() {
+    object.add("foo", false).add("foo", true);
+
+    assertEquals(Optional.of(Json.TRUE), object.getValue("foo"));
+  }
+
+  @Test
   public void get_int_returnsValueFromMember() {
     object.add("foo", 23);
 
@@ -324,8 +347,20 @@ public class JsonObject_Test {
   }
 
   @Test
+  public void get_int_optional_returnsValueFromMember() {
+    object.add("foo", 23);
+
+    assertEquals(OptionalInt.of(23), object.getInt("foo"));
+  }
+
+  @Test
   public void get_int_returnsDefaultForMissingMember() {
     assertEquals(23, object.getInt("foo", 23));
+  }
+
+  @Test
+  public void get_int_optional_returnsEmptyForMissingMember() {
+    assertEquals(OptionalInt.empty(), object.getInt("foo"));
   }
 
   @Test
@@ -336,8 +371,20 @@ public class JsonObject_Test {
   }
 
   @Test
+  public void get_long_optional_returnsValueFromMember() {
+    object.add("foo", 23l);
+
+    assertEquals(OptionalLong.of(23l), object.getLong("foo"));
+  }
+
+  @Test
   public void get_long_returnsDefaultForMissingMember() {
     assertEquals(23l, object.getLong("foo", 23l));
+  }
+
+  @Test
+  public void get_long_optional_returnsDefaultForMissingMember() {
+    assertEquals(OptionalLong.empty(), object.getLong("foo"));
   }
 
   @Test
@@ -348,8 +395,20 @@ public class JsonObject_Test {
   }
 
   @Test
+  public void get_float_optional_returnsValueFromMember() {
+    object.add("foo", 3.14f);
+
+    assertEquals(Optional.of(3.14f), object.getFloat("foo"));
+  }
+
+  @Test
   public void get_float_returnsDefaultForMissingMember() {
     assertEquals(3.14f, object.getFloat("foo", 3.14f), 0);
+  }
+
+  @Test
+  public void get_float_optional_returnsEmptyForMissingMember() {
+    assertEquals(Optional.empty(), object.getFloat("foo"));
   }
 
   @Test
@@ -360,8 +419,20 @@ public class JsonObject_Test {
   }
 
   @Test
+  public void get_double_optional_returnsValueFromMember() {
+    object.add("foo", 3.14);
+
+    assertEquals(OptionalDouble.of(3.14), object.getDouble("foo"));
+  }
+
+  @Test
   public void get_double_returnsDefaultForMissingMember() {
     assertEquals(3.14, object.getDouble("foo", 3.14), 0);
+  }
+
+  @Test
+  public void get_double_optional_returnsEmptyForMissingMember() {
+    assertEquals(OptionalDouble.empty(), object.getDouble("foo"));
   }
 
   @Test
@@ -372,8 +443,20 @@ public class JsonObject_Test {
   }
 
   @Test
+  public void get_boolean_optional_returnsValueFromMember() {
+    object.add("foo", true);
+
+    assertEquals(Optional.of(true), object.getBoolean("foo"));
+  }
+
+  @Test
   public void get_boolean_returnsDefaultForMissingMember() {
     assertFalse(object.getBoolean("foo", false));
+  }
+
+  @Test
+  public void get_boolean_optional_returnsEmptyForMissingMember() {
+    assertEquals(Optional.empty(), object.getBoolean("foo"));
   }
 
   @Test
@@ -384,8 +467,20 @@ public class JsonObject_Test {
   }
 
   @Test
+  public void get_string_optional_returnsValueFromMember() {
+    object.add("foo", "bar");
+
+    assertEquals(Optional.of("bar"), object.getString("foo"));
+  }
+
+  @Test
   public void get_string_returnsDefaultForMissingMember() {
     assertEquals("default", object.getString("foo", "default"));
+  }
+
+  @Test
+  public void get_string_optional_returnsEmptyForMissingMember() {
+    assertEquals(Optional.empty(), object.getString("foo"));
   }
 
   @Test
