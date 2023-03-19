@@ -1,5 +1,16 @@
-minimal-json [UNMAINTAINED]
-===========================
+minimal-json [forked]
+===================
+
+I'm working to develop an updated version of this beautiful library.
+
+Major changes:
+
+- Required java version now is java 1.8.
+- Removes deprecated values in JsonValue.
+- Add `stream()` methods to `JsonObject` and `JsonArray`.
+- Add new methods to return `Optional` to `JsonObject`.
+
+## Original Message
 
 *I'm glad to see that minimal-json is still used, however, I can't maintain this project anymore. If anyone actively maintains a fork that follows the ideas of minimal-json, I'm happy to link to this repository here. Thank you.*
 
