@@ -6,7 +6,7 @@ I'm working to develop an updated version of this beautiful library.
 Major changes:
 
 - Required java version now is java 1.8.
-- Removes deprecated values in JsonValue.
+- Removes all deprecated methods.
 - Add `stream()` methods to `JsonObject` and `JsonArray`.
 - Add new methods to return `Optional` to `JsonObject`.
 
