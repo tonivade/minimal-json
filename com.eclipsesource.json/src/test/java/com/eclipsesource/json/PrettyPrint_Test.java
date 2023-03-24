@@ -21,9 +21,14 @@
  ******************************************************************************/
 package com.eclipsesource.json;
 
-import static com.eclipsesource.json.PrettyPrint.*;
+import static com.eclipsesource.json.PrettyPrint.indentWithSpaces;
+import static com.eclipsesource.json.PrettyPrint.indentWithTabs;
+import static com.eclipsesource.json.PrettyPrint.singleLine;
 import static java.util.Locale.US;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
