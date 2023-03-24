@@ -22,7 +22,6 @@
 package com.eclipsesource.json;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.io.Serializable;
 import java.io.StringWriter;
 import java.io.UncheckedIOException;
@@ -66,121 +65,6 @@ public abstract class JsonValue implements Serializable {
 
   JsonValue() {
     // prevent subclasses outside of this package
-  }
-
-  /**
-   * Reads a JSON value from the given reader.
-   * <p>
-   * Characters are read in chunks and buffered internally, therefore wrapping an existing reader in
-   * an additional <code>BufferedReader</code> does <strong>not</strong> improve reading
-   * performance.
-   * </p>
-   *
-   * @param reader
-   *          the reader to read the JSON value from
-   * @return the JSON value that has been read
-   * @throws IOException
-   *           if an I/O error occurs in the reader
-   * @throws ParseException
-   *           if the input is not valid JSON
-   * @deprecated Use {@link Json#parse(Reader)} instead
-   */
-  @Deprecated
-  public static JsonValue readFrom(Reader reader) throws IOException {
-    return Json.parse(reader);
-  }
-
-  /**
-   * Reads a JSON value from the given string.
-   *
-   * @param text
-   *          the string that contains the JSON value
-   * @return the JSON value that has been read
-   * @throws ParseException
-   *           if the input is not valid JSON
-   * @deprecated Use {@link Json#parse(String)} instead
-   */
-  @Deprecated
-  public static JsonValue readFrom(String text) {
-    return Json.parse(text);
-  }
-
-  /**
-   * Returns a JsonValue instance that represents the given <code>int</code> value.
-   *
-   * @param value
-   *          the value to get a JSON representation for
-   * @return a JSON value that represents the given value
-   * @deprecated Use <code>Json.value()</code> instead
-   */
-  @Deprecated
-  public static JsonValue valueOf(int value) {
-    return Json.value(value);
-  }
-
-  /**
-   * Returns a JsonValue instance that represents the given <code>long</code> value.
-   *
-   * @param value
-   *          the value to get a JSON representation for
-   * @return a JSON value that represents the given value
-   * @deprecated Use <code>Json.value()</code> instead
-   */
-  @Deprecated
-  public static JsonValue valueOf(long value) {
-    return Json.value(value);
-  }
-
-  /**
-   * Returns a JsonValue instance that represents the given <code>float</code> value.
-   *
-   * @param value
-   *          the value to get a JSON representation for
-   * @return a JSON value that represents the given value
-   * @deprecated Use <code>Json.value()</code> instead
-   */
-  @Deprecated
-  public static JsonValue valueOf(float value) {
-    return Json.value(value);
-  }
-
-  /**
-   * Returns a JsonValue instance that represents the given <code>double</code> value.
-   *
-   * @param value
-   *          the value to get a JSON representation for
-   * @return a JSON value that represents the given value
-   * @deprecated Use <code>Json.value()</code> instead
-   */
-  @Deprecated
-  public static JsonValue valueOf(double value) {
-    return Json.value(value);
-  }
-
-  /**
-   * Returns a JsonValue instance that represents the given string.
-   *
-   * @param string
-   *          the string to get a JSON representation for
-   * @return a JSON value that represents the given string
-   * @deprecated Use <code>Json.value()</code> instead
-   */
-  @Deprecated
-  public static JsonValue valueOf(String string) {
-    return Json.value(string);
-  }
-
-  /**
-   * Returns a JsonValue instance that represents the given <code>boolean</code> value.
-   *
-   * @param value
-   *          the value to get a JSON representation for
-   * @return a JSON value that represents the given value
-   * @deprecated Use <code>Json.value()</code> instead
-   */
-  @Deprecated
-  public static JsonValue valueOf(boolean value) {
-    return Json.value(value);
   }
 
   /**

@@ -35,7 +35,6 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -111,33 +110,6 @@ public class JsonObject_Test {
     JsonObject unmodifiableObject = JsonObject.unmodifiableObject(object);
 
     unmodifiableObject.add("foo", 23);
-  }
-
-  @Test
-  @SuppressWarnings("deprecation")
-  public void readFrom_reader() throws IOException {
-    assertEquals(new JsonObject(), JsonObject.readFrom(new StringReader("{}")));
-    assertEquals(new JsonObject().add("a", 23),
-                 JsonObject.readFrom(new StringReader("{ \"a\": 23 }")));
-  }
-
-  @Test
-  @SuppressWarnings("deprecation")
-  public void readFrom_string() {
-    assertEquals(new JsonObject(), JsonObject.readFrom("{}"));
-    assertEquals(new JsonObject().add("a", 23), JsonObject.readFrom("{ \"a\": 23 }"));
-  }
-
-  @Test(expected = ParseException.class)
-  @SuppressWarnings("deprecation")
-  public void readFrom_illegalJson() {
-    JsonObject.readFrom("This is not JSON");
-  }
-
-  @Test(expected = UnsupportedOperationException.class)
-  @SuppressWarnings("deprecation")
-  public void readFrom_wrongJsonType() {
-    JsonObject.readFrom("\"This is not a JSON object\"");
   }
 
   @Test
