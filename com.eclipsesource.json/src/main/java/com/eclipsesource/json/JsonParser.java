@@ -25,6 +25,7 @@ package com.eclipsesource.json;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+import java.io.UncheckedIOException;
 
 
 /**
@@ -92,7 +93,7 @@ public class JsonParser {
       parse(new StringReader(string), bufferSize);
     } catch (IOException exception) {
       // StringReader does not throw IOException
-      throw new RuntimeException(exception);
+      throw new UncheckedIOException(exception);
     }
   }
 

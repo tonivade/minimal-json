@@ -36,22 +36,20 @@ public class TestUtil {
 
   public static <T extends Exception> T assertException(Class<T> type,
                                                         String message,
-                                                        RunnableEx runnable)
-
-  {
+                                                        UncheckedRunnable runnable) {
     T exception = assertException(type, runnable);
     assertEquals("exception message", message, exception.getMessage());
     return exception;
   }
 
-  public static <T extends Exception> T assertException(Class<T> type, RunnableEx runnable) {
+  public static <T extends Exception> T assertException(Class<T> type, UncheckedRunnable runnable) {
     T exception = catchException(runnable, type);
     assertNotNull("Expected exception: " + type.getName(), exception);
     return exception;
   }
 
   @SuppressWarnings("unchecked")
-  private static <T extends Exception> T catchException(RunnableEx runnable, Class<T> type) {
+  private static <T extends Exception> T catchException(UncheckedRunnable runnable, Class<T> type) {
     try {
       runnable.run();
       return null;
@@ -80,7 +78,7 @@ public class TestUtil {
     return new ObjectInputStream(inputStream).readObject();
   }
 
-  public static interface RunnableEx {
+  public static interface UncheckedRunnable {
     void run() throws Exception;
   }
 
