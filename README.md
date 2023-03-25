@@ -10,7 +10,18 @@ Major changes:
 - Add `stream()` methods to `JsonObject` and `JsonArray`.
 - Add new methods to return `Optional` to `JsonObject`.
 
-## Original Message
+You can include minimal-json from Maven Central by adding this dependency to your `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>com.github.tonivade</groupId>
+  <artifactId>minimal-json</artifactId>
+  <version>0.10.0</version>
+</dependency>
+```
+
+minimal-json [original]
+===================
 
 *I'm glad to see that minimal-json is still used, however, I can't maintain this project anymore. If anyone actively maintains a fork that follows the ideas of minimal-json, I'm happy to link to this repository here. Thank you.*
 
