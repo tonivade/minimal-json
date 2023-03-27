@@ -99,8 +99,7 @@ public class ReadWriteMicroBenchmark extends SimpleBenchmark {
                                "gson",
                                "jackson",
                                "json-simple",
-                               "minimal-json",
-                               "purejson");
+                               "minimal-json");
     runner.addParameterDefault("input", "long-string", "numbers-array");
     runner.exec(args);
   }

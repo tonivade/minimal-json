@@ -78,7 +78,7 @@ public class BufferedReaderBenchmark extends SimpleBenchmark {
 
   public static void main(String[] args) throws IOException {
     CaliperRunner runner = new CaliperRunner(BufferedReaderBenchmark.class);
-    runner.addParameterDefault("parser", "null", "gson", "jackson", "minimal-json", "purejson");
+    runner.addParameterDefault("parser", "null", "gson", "jackson", "minimal-json");
     runner.addParameterDefault("input", "rap", "caliper", "long-string", "numbers-array");
     runner.exec(args);
   }

@@ -161,8 +161,7 @@ public class ReadWriteBenchmark extends SimpleBenchmark {
                                "jackson",
                                "json-simple",
                                "json-smart",
-                               "minimal-json",
-                               "purejson");
+                               "minimal-json");
     runner.addParameterDefault("input", "rap", "caliper");
     runner.exec(args);
   }
