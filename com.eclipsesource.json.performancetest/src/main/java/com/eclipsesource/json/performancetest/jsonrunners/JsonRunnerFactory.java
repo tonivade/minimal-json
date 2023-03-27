@@ -38,8 +38,6 @@ public class JsonRunnerFactory {
       return new JsonSmartRunner();
     } else if ("minimal-json".equals(name)) {
       return new MinimalJsonRunner();
-    } else if ("purejson".equals(name)) {
-      return new PureJsonRunner();
     } else {
       throw new IllegalArgumentException("Unknown parser: " + name);
     }

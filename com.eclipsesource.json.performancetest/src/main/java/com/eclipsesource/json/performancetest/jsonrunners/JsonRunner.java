@@ -21,8 +21,6 @@
  ******************************************************************************/
 package com.eclipsesource.json.performancetest.jsonrunners;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,32 +29,35 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.charset.Charset;
 
 
 public abstract class JsonRunner {
 
+  public static final Charset UTF8 = Charset.forName("UTF-8");
+
   public abstract Object readFromString(String string) throws Exception;
 
   public Object readFromByteArray(byte[] bytes) throws Exception {
-    return readFromString(new String(bytes, UTF_8));
+    return readFromString(new String(bytes, UTF8));
   }
 
   public abstract Object readFromReader(Reader reader) throws Exception;
 
   public Object readFromInputStream(InputStream in) throws Exception {
-    return readFromReader(new InputStreamReader(in, UTF_8));
+    return readFromReader(new InputStreamReader(in, UTF8));
   }
 
   public abstract String writeToString(Object model) throws Exception;
 
   public byte[] writeToByteArray(Object model) throws Exception {
-    return writeToString(model).getBytes(UTF_8);
+    return writeToString(model).getBytes(UTF8);
   }
 
   public abstract void writeToWriter(Object model, Writer writer) throws Exception;
 
   public void writeToOutputStream(Object model, OutputStream out) throws Exception {
-    Writer writer = new BufferedWriter(new OutputStreamWriter(new OutputStreamWrapper(out), UTF_8));
+    Writer writer = new BufferedWriter(new OutputStreamWriter(new OutputStreamWrapper(out), UTF8));
     writeToWriter(model, writer);
     writer.flush();
   }

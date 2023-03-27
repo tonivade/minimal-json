@@ -22,7 +22,6 @@
 package com.eclipsesource.json.performancetest;
 
 import static com.eclipsesource.json.performancetest.resources.Resources.readResource;
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 import java.io.IOException;
 
@@ -51,7 +50,7 @@ public class ReadWriteMicroBenchmark extends SimpleBenchmark {
   @Override
   protected void setUp() throws Exception {
     json = readResource("input/" + input + ".json");
-    jsonBytes = json.getBytes(UTF_8);
+    jsonBytes = json.getBytes(JsonRunner.UTF8);
     runner = JsonRunnerFactory.findByName(parser);
     model = runner.readFromString(json);
   }
