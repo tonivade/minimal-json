@@ -109,6 +109,11 @@
       <version>2.4.9</version>
     </dependency>
     <dependency>
+      <groupId>com.github.tonivade</groupId>
+      <artifactId>purejson</artifactId>
+      <version>0.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
       <groupId>com.google.caliper</groupId>
       <artifactId>caliper</artifactId>
       <version>0.5-rc1</version>

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013, 2015 EclipseSource.
+ * Copyright (c) 2013, 2015 EclipseSource and others.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,28 +21,32 @@
  ******************************************************************************/
 package com.eclipsesource.json.performancetest.jsonrunners;
 
-public class JsonRunnerFactory {
+import java.io.Reader;
+import java.io.Writer;
 
-  public static JsonRunner findByName(String name) {
-    if ("null".equals(name)) {
-      return new NullRunner();
-    } else if ("org-json".equals(name)) {
-      return new JsonOrgRunner();
-    } else if ("gson".equals(name)) {
-      return new GsonRunner();
-    } else if ("jackson".equals(name)) {
-      return new JacksonRunner();
-    } else if ("json-simple".equals(name)) {
-      return new SimpleRunner();
-    } else if ("json-smart".equals(name)) {
-      return new JsonSmartRunner();
-    } else if ("minimal-json".equals(name)) {
-      return new MinimalJsonRunner();
-    } else if ("purejson".equals(name)) {
-      return new PureJsonRunner();
-    } else {
-      throw new IllegalArgumentException("Unknown parser: " + name);
-    }
+import com.github.tonivade.purejson.JsonNode;
+import com.github.tonivade.purejson.PureJson;
+
+public class PureJsonRunner extends JsonRunner {
+
+  @Override
+  public Object readFromString(String string) throws Exception {
+    return PureJson.parse(string);
+  }
+
+  @Override
+  public Object readFromReader(Reader reader) throws Exception {
+    return PureJson.parse(reader);
+  }
+
+  @Override
+  public String writeToString(Object model) throws Exception {
+    return PureJson.serialize((JsonNode) model).getOrElseThrow();
+  }
+
+  @Override
+  public void writeToWriter(Object model, Writer writer) throws Exception {
+    PureJson.serialize((JsonNode) model, writer).getOrElseThrow();
   }
 
 }

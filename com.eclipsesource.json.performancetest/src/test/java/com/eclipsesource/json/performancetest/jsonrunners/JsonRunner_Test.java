@@ -22,6 +22,7 @@
 package com.eclipsesource.json.performancetest.jsonrunners;
 
 import static com.eclipsesource.json.performancetest.resources.Resources.readResource;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
@@ -75,7 +76,7 @@ public class JsonRunner_Test {
   public void setUp() throws Exception {
     runner = JsonRunnerFactory.findByName(name);
     json = readResource("input/test.json");
-    jsonBytes = json.getBytes(JsonRunner.UTF8);
+    jsonBytes = json.getBytes(UTF_8);
     minimalJsonModel = Json.parse(json);
   }
 
@@ -84,7 +85,7 @@ public class JsonRunner_Test {
   }
 
   private void assertJsonCorrect(byte[] ba) {
-    assertJsonCorrect(new String(ba, JsonRunner.UTF8));
+    assertJsonCorrect(new String(ba, UTF_8));
   }
 
   @Test
