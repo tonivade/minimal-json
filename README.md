@@ -16,7 +16,7 @@ You can include minimal-json from Maven Central by adding this dependency to you
 <dependency>
   <groupId>com.github.tonivade</groupId>
   <artifactId>minimal-json</artifactId>
-  <version>0.10.0</version>
+  <version>0.11.0</version>
 </dependency>
 ```
 
