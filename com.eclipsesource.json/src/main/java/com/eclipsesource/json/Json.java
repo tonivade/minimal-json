@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2015, 2016 EclipseSource.
- * Copyright (c) 2023 Antonio Gabriel Muñoz Conejo <me at tonivade dot es>
+ * Copyright (c) 2023-2024 Antonio Gabriel Muñoz Conejo <me at tonivade dot es>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
